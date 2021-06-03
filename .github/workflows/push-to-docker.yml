@@ -40,6 +40,9 @@ jobs:
       - name: Log
         run: cat $GITHUB_WORKSPACE/kube/do-sample-deployment.yml
 
+      - name: Save DigitalOcean kubeconfig with short-lived credentials
+        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 mycluster
+
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f $GITHUB_WORKSPACE/kube/do-sample-deployment.yml
 

@@ -35,7 +35,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Update deployment file
-        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|rodhall85/do-kubernetes-sample-app:latest|rodhall85/do-kubernetes-sample-app:'${TAG}'|' $GITHUB_WORKSPACE/kube/do-sample-deployment.yml > $GITHUB_WORKSPACE/kube/deployment.yml
+        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|rodhall85/do-kubernetes-sample-app:latest|rodhall85/do-kubernetes-sample-app:'${TAG}'|' $GITHUB_WORKSPACE/kube/do-sample-deployment.yml > $GITHUB_WORKSPACE/kube/deployment.yml && cat $GITHUB_WORKSPACE/kube/deployment.yml
 
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f $GITHUB_WORKSPACE/kube/deployment.yml

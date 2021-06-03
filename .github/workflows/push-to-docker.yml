@@ -35,7 +35,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Update deployment file
-        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|rodhall85/do-kubernetes-sample-app:latest|rodhall85/do-kubernetes-sample-app:'${TAG}'|' $GITHUB_WORKSPACE/kube/do-sample-deployment.yml
+        run: TAG=$(echo $GITHUB_SHA) && sed -i 's|rodhall85/do-kubernetes-sample-app:latest|rodhall85/do-kubernetes-sample-app:'${TAG}'|' $GITHUB_WORKSPACE/kube/do-sample-deployment.yml
 
       - name: Log
         run: cat $GITHUB_WORKSPACE/kube/do-sample-deployment.yml

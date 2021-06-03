@@ -38,7 +38,7 @@ jobs:
         run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|rodhall85/do-kubernetes-sample-app:latest|rodhall85/do-kubernetes-sample-app:'${TAG}'|' $GITHUB_WORKSPACE/kube/do-sample-deployment.yml
 
       - name: Deploy to DigitalOcean Kubernetes
-        run: kubectl apply -f $GITHUB_WORKSPACE/kube/do-sample-deployment.yml
+        run: kubectl apply -f $GITHUB_WORKSPACE/kube/
 
       - name: Verify deployment
         run: kubectl rollout status deployment/do-kubernetes-sample-app
